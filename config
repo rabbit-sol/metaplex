@@ -1,0 +1,27 @@
+Wrote new keypair to ~/.config/solana/mainnet.json
+==========================================================================
+pubkey: BAMUh8Rkt3RMqeJFetnSUWtTLSQ4V4B4uHkdM9xVvcVo        
+==========================================================================
+Save this seed phrase and your BIP39 passphrase to recover your new keypair:
+glow enforce boss across term lunar replace near creek share ramp mechanic
+==================================================================================
+
+
+$ yarn install --cwd ./js/
+
+<!-- set solana to mainnet   -->
+solana config set --url https://api.mainnet.solana.com
+
+<!-- create new key -->
+solana-keygen new --outfile ~/candy-machine-config/mainnet.json
+
+ts-node ./js/packages/cli/src/candy-machine-cli.ts help upload
+
+<!-- upload assets -->
+ts-node ./js/packages/cli/src/candy-machine-cli.ts upload ./assets --env mainnet --keypair ~/.config/solana/mainnet.json
+
+<!-- create candy machine  -->
+ts-node ./js/packages/cli/src/candy-machine-cli.ts create_candy_machine --env mainnet --keypair ./~/.config/solana/mainnet.json -p 0.5
+
+<!-- update_candy_machine -->
+ts-node ./js/packages/cli/src/candy-machine-cli.ts update_candy_machine --keypair ./~/.config/solana/mainnet.json --price 0.5 --date "11 Dec 2021 00:01:00 EST"
